@@ -1,0 +1,262 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    Page navbar.
+}}
+<nav class="fixed-top navbar navbar-light {{#navbarinverse}}nav-inverse{{/navbarinverse}}  navbar-expand moodle-has-zindex p-0 greedy" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+    <div class="navbar-brand navbar-brand-center p-0 m-0 h-100">
+        {{# output.should_display_logo }}
+            <a class="header-logo text-white align-items-center justify-content-center h-100 text-decoration-none" href="{{{ config.wwwroot }}}" aria-label="{{#str}}brandlogo, theme_remui{{/str}}">
+                <img src="{{ logominiurl }}" class="navbar-brand-logo mini">
+                <img src="{{ logourl }}" class="navbar-brand-logo">
+            </a>
+            <a class="header-sitename text-white align-items-center justify-content-center h-100 text-decoration-none" href="{{{ config.wwwroot }}}" aria-label="{{ sitename }} - {{#str}}brandname, theme_remui{{/str}}">
+                <span class="navbar-brand-logo mini"><i class="fa fa-{{siteicon}}"></i></span>
+                <span class="navbar-brand-logo font-weight-bold">
+                    <i class="fa fa-{{siteicon}}"></i>&nbsp;
+                    {{{ sitename }}}
+                </span>
+            </a>
+        {{/ output.should_display_logo }}
+    </div>
+    <div class="navbar-options d-flex h-100">
+        <div data-region="drawer-toggle" class="d-inline-block m-0 h-100 no-bghover">
+        <button aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}"
+        aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left bg-transparent h-100 no-bghover"
+        data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">
+            <div class="remuiicon">
+                {{#pix}}i/menubars{{/pix}}<span class="sr-only">{{#str}}sidepanel, core{{/str}}</span>
+            </div>
+        </button>
+    </div>
+    <div class="nav-item h-auto no-bghover" id="toggleFullscreen" title="{{#str}}togglefullscreen, theme_remui{{/str}}">
+        <a class="nav-link icon m-0 remuiicon" data-toggle="fullscreen" href="#" role="button" aria-label="{{#str}}togglefullscreen, theme_remui{{/str}}" >
+            {{! Expand Icon SVG }}
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="expand" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-expand fa-w-14 fa-3x"><path fill="currentColor" d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z" class=""></path></svg>
+            {{! Collapse Icon SVG }}
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="compress" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-compress fa-w-14 fa-3x"><path fill="currentColor" d="M436 192H312c-13.3 0-24-10.7-24-24V44c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v84h84c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm-276-24V44c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v84H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24zm0 300V344c0-13.3-10.7-24-24-24H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-84h84c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12H312c-13.3 0-24 10.7-24 24v124c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12z" class=""></path></svg>
+        </a>
+    </div>
+
+    <ul class="navbar-nav h-100 wdm-custom-menus links">
+
+    <li class="nav-item dropdown" id="combinedCoursesInner">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" data-animation="scale-up" aria-expanded="true" role="button">{{#str}}quickcourse, theme_remui_child{{/str}}</a>
+        <div id="tabs" class="dropdown-menu" role="menu" style="z-index: 1500;">
+            <form>
+                
+                <ul class="nav nav-tabs qcl_list" role="tablist">
+                    		
+                    		<li class="nav-item current {{#qcl_view_current}}active  {{/qcl_view_current}} {{^qcl_view}}active{{/qcl_view}}"><a class="nav-link {{#qcl_view_current}}active{{/qcl_view_current}}" id="current-tab" data-toggle="tab" href="#current" role="tab" aria-controls="home" aria-selected="true"  title="Set preference to Current Courses"><i class="fa fa-calendar-o"></i> <span id="current_label" class="qcl_label">{{#str}}current, theme_remui_child{{/str}}</span></a></li>
+
+                            <li class="nav-item recent {{#qcl_view}}{{#qcl_view_recent}}active {{/qcl_view_recent}}{{/qcl_view}}"><a class="nav-link {{#qcl_view}}{{#qcl_view_recent}}active{{/qcl_view_recent}}{{/qcl_view}}" id="recent-tab" data-toggle="tab" href="#recent" role="tab" aria-controls="home" aria-selected="true"  title="Set preference to Recently Accessed Courses"><i class="fa fa-sort-amount-asc"></i> <span id="recent_label" class="qcl_label">{{#str}}recent, theme_remui_child{{/str}}<br/><small style="opacity: 0.7;">Past {{{recent_value}}} {{{recent_scope}}}</small></span></a></li>
+                    
+                            <li class="nav-item starred {{#qcl_view}}{{#qcl_view_starred}}active {{/qcl_view_starred}}{{/qcl_view}}"><a class="nav-link {{#qcl_view}}{{#qcl_view_starred}}active{{/qcl_view_starred}}{{/qcl_view}}" id="starred-tab" data-toggle="tab" href="#starred" role="tab" aria-controls="home" aria-selected="false"  title="Set preference to Starred Courses"><i class="fa fa-star"></i> <span id="starred_label" class="qcl_label">{{#str}}starred, theme_remui_child{{/str}}</span></a><a id="editstarred" href="{{{ config.wwwroot }}}/my" title="Edit Favourite/Starred Courses"><i class="fa fa-cog"></i></a></li>
+                    
+                </ul>
+
+                <div id="content" class="tab-content">
+                    <div class="tab-pane fade  {{#qcl_view_current}}show active{{/qcl_view_current}} {{^qcl_view}}show active{{/qcl_view}}" id="current" role="tabpanel" aria-labelledby="current-tab">
+
+                    	{{# hascurrent}}
+                    		{{# hascurrent_f}}
+		                        {{#currentcourses_finite}}
+		                        <li class="dropdown-list-item">
+		                            <a class="dropdown-item finite" role="menuitem" href="{{{ config.wwwroot }}}/course/view.php?id={{{id}}}"><span class='finite-title'>{{{fullname}}}</span></a><i class="fa fa-calendar-o" data-toggle="tooltip" data-placement="right" title="Ending: {{{enddate}}}"></i>
+		                        </li>
+		                        {{/currentcourses_finite}}
+		                        <hr/>
+		                    {{/ hascurrent_f}}
+		                        
+		                    {{# hascurrent_p}}
+		                        {{#currentcourses_persistent}}
+		                        <li>
+		                            <a class="dropdown-item persistent" role="menuitem" href="{{{ config.wwwroot }}}/course/view.php?id={{{id}}}"><span class='persistent-title'>{{{fullname}}}</span></a><i class="fa fa-calendar-o" data-toggle="tooltip" data-placement="right" title="{{{enddate}}}"></i>
+		                        </li>
+		                        {{/currentcourses_persistent}}
+		                        <hr/>
+		                	{{/ hascurrent_p}}
+                    	{{/ hascurrent}}
+
+                        {{^ hascurrent }}
+                            <div style="padding:20px;">{{#str}}nocurrs, theme_remui_child{{/str}}<p><a class="btn btn-primary" href="{{{ config.wwwroot }}}/my"><i class="fa fa-dashboard"></i> Dashboard</a></p></div>
+                            <hr/>
+                        {{/ hascurrent }}
+
+                        <li>
+                        	<a class="dropdown-item allcourses" role="menuitem" href="{{{ wwwroot }}}/my#groupingdropdown"><i class="fa fa-dashboard"></i> <strong>All Courses (including previous terms)</strong></a>
+                        </li>
+                    </div>
+                    <div class="tab-pane fade {{#qcl_view_recent}}show active{{/qcl_view_recent}}{{^qcl_view}}{{^ hascurrent }}{{# hascurrent }}show active{{/ hascurrent}}{{/ hascurrent}}{{/qcl_view}}" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+                        {{# hasrecent}}
+                           
+                            {{#recentcourses}}
+                            <li class="dropdown-list-item">
+                                <a class="dropdown-item" role="menuitem" href="{{{ wwwroot }}}/course/view.php?id={{{id}}}">{{{fullname}}}</a><i class="fa fa-calendar-o" data-toggle="tooltip" data-placement="right" title="{{{enddate}}}"></i>
+                            </li>
+                            {{/recentcourses}}
+                               
+                        {{/ hasrecent}}
+                        {{^ hasrecent }}
+
+                            <div style="padding:20px;"><p>This tab will show you recently accessed courses.</p></div>
+
+                        {{/ hasrecent }}
+
+                        <hr/>
+
+                        <li class="dropdown-list-item">
+                            <a class="dropdown-item allcourses" role="menuitem" href="{{{ wwwroot }}}/my#groupingdropdown"><i class="fa fa-dashboard"></i> <strong>All Courses</strong></a>
+                        </li>
+                    </div>
+                    <div class="tab-pane fade  {{#qcl_view_starred}}show active{{/qcl_view_starred}}{{^qcl_view}}{{^ hascurrent}}{{^ hasrecent }}{{# hasstarred }}show active{{/ hasstarred}}{{/ hasrecent}}{{/hascurrent}}{{/qcl_view}}" id="starred" role="tabpanel" aria-labelledby="starred-tab">
+                        {{#hasstarred}}
+                        
+                            {{#starredcourses}}
+                            <li class="dropdown-list-item">
+                            	<a class="dropdown-item" role="menuitem" href="{{{ wwwroot }}}/course/view.php?id={{{id}}}">{{{fullname}}}</a><i class="fa fa-calendar-o" data-toggle="tooltip" data-placement="right" title="{{{enddate}}}"></i>
+                            </li>
+                            {{/starredcourses}}
+
+                            <hr/>
+
+                            <li class="dropdown-list-item">
+                                <a class="dropdown-item allcourses" role="menuitem" href="{{{ wwwroot }}}/my#groupingdropdown"><i class="fa fa-dashboard"></i> <strong>All Courses</strong></a>
+                            </li>
+                           
+                        {{/hasstarred}}
+                        {{^ hasstarred }}
+
+                        <div style="padding:20px;">{{#str}}nofaves, theme_remui_child{{/str}}<p><a class="btn btn-primary" href="{{{ wwwroot }}}/my#groupingdropdown"><i class="fa fa-dashboard"></i> Dashboard</a></p></div>
+
+                        {{/ hasstarred }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </li>
+
+
+        <!-- custom_menu -->
+        {{{ output.custom_menu }}}
+        <!-- page_heading_menu -->
+        {{{ output.page_heading_menu }}}
+    </ul>
+
+	<!-- collapsible menu -->
+        <button class="menu-toggle"><span><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span></button>
+        <ul class='hidden-links hidden'></ul>
+
+        <!-- login menu toggler on mobile -->
+        <button type="button" class="navbar-toggler">
+            <i class="icon fa fa-ellipsis-v" aria-hidden="true"></i>
+        </button>
+
+        <ul class="nav navbar-nav ml-auto mr-2 h-100 right-menu justify-content-end">
+            {{{ output.search_box }}}
+            
+            <!-- send feedback menu for admin -->
+            {{# cansendfeedback }}
+            <li class="dropdown nav-item oneclick-report no-bghover">
+                <a class="nav-link remuiicon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#" title="Help & Feedback" aria-label="Help & Feedback"><i class="icon fa fa-question-circle-o" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" role="menuitem" target="_blank" href="https://edwiser.helpscoutdocs.com/category/83-product-support"><div class="text_to_html">Check FAQ</div></a>
+                    {{# licensestatus_forfeedback }}
+                        <a class="dropdown-item send-remui-feedback" role="menuitem" href="#"><div class="text_to_html">{{# str }} sendfeedback, theme_remui {{/ str }}</div></a>
+                    {{/ licensestatus_forfeedback }}
+                    {{^ licensestatus_forfeedback }}
+                        <a class="dropdown-item send-remui-feedback_nolicense" href="#" role="menuitem" onclick='alert("{{# str }} send_feedback_license_error, theme_remui {{/ str }}"); return false;'><div class="text_to_html">{{# str }} sendfeedback, theme_remui {{/ str }}</div></a>
+                    {{/ licensestatus_forfeedback }}
+                </div>
+            </li>
+            {{/ cansendfeedback }}
+
+            <!-- navbar_plugin_output : 'message', 'notifications' and 'chat sidebar' toggles -->
+            <li class="nav-item no-bghover">
+            {{{ output.navbar_plugin_output }}}
+            </li>
+            
+            <!-- user_menu -->
+            <li class="nav-item d-flex align-items-center h-100 {{#cansignup}}no-bghover{{/cansignup}}">
+                {{{ output.user_menu }}}
+            </li>
+            {{# cansignup }}
+            <li class="nav-item d-flex align-items-center no-bghover">
+                <a href="{{signupurl}}" class="nav-link "><div class="remuiicon"><i class="icon fa fa-user-plus"></i> </div>{{#str}}startsignup{{/str}}</a>
+            </li>
+            {{/ cansignup }}
+        </ul>
+        <!-- search_box -->
+    <div>
+</nav>
+{{{ output.show_license_notice }}}
+
+
+{{#js}}
+require(['jquery'], function ($) {
+    $(document).ready(function() {
+
+        setTimeout(function(){
+            if($('.userway_p1').length) {
+                $('.nav.navbar-nav.right-menu.justify-content-end').addClass('allow-userway-menu');
+            }
+        }, 2000);
+        
+        $(".qcl_list .nav-item.active").insertBefore(".qcl_list .nav-item:nth-child(1):not(.active)");    
+        $('#tabs').on('click', '.nav-tabs a#starred-tab', function(){
+            $('.dropdown-menu#tabs .tab-content .tab-pane').removeClass('show active');
+            $('.dropdown-menu#tabs .tab-content .tab-pane#starred').attr('class','tab-pane fade show active');
+            $('.nav-item').removeClass('active');
+           
+            $(this).parent('.nav-item').addClass('active');
+            M.util.set_user_preference('qcl_view_state', 'starred');
+        })
+        $('#tabs').on('click', '.nav-tabs a#recent-tab', function(){
+            $('.dropdown-menu#tabs .tab-content .tab-pane').removeClass('show active');
+            $('.dropdown-menu#tabs .tab-content .tab-pane#recent').attr('class','tab-pane fade show active');
+            $('.nav-item').removeClass('active');
+            
+            $(this).parent('.nav-item').addClass('active');
+            M.util.set_user_preference('qcl_view_state', 'recent');
+        })
+        $('#tabs').on('click', '.nav-tabs a#current-tab', function(){
+            $('.dropdown-menu#tabs .tab-content .tab-pane').removeClass('show active');
+            $('.dropdown-menu#tabs .tab-content .tab-pane#current').attr('class','tab-pane fade show active');
+            $('.nav-item').removeClass('active');
+           
+            $(this).parent('.nav-item').addClass('active');
+            M.util.set_user_preference('qcl_view_state', 'current');
+        })
+
+
+		function offsetAnchor() {
+		    if(location.hash.length !== 0) {
+		        window.scrollTo(window.scrollX, window.scrollY - 100);
+		    }
+		}
+
+		
+		window.addEventListener("hashchange", offsetAnchor);
+
+		
+		window.setTimeout(offsetAnchor, 1);
+
+        
+    });
+});
+{{/js}}
